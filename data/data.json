@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "firstName": "Alfred",
+    "lastName": "Morris",
+    "dateOfBirth": "01.01.2000",
+    "available": "01.01.2000",
+    "email": "morris@example.com",
+    "alreadyDev": "true",
+    "skills": [
+      { "subject": "SQL", "since": "01.01.2000", "knowledge": "beginner" },
+      { "subject": "Oracle PL SQL", "since": "01.01.2000", "knowledge": "beginner" },
+      { "subject": "C#", "since": "01.01.2000", "knowledge": "beginner" }
+    ]
+  },
+  {
+    "id": "2",
+    "firstName": "Lara",
+    "lastName": "Cheng",
+    "dateOfBirth": "01.01.2000",
+    "available": "01.01.2000",
+    "email": "cheng@example.com",
+    "alreadyDev": "false",
+    "skills": [
+      { "subject": "Python", "since": "01.01.2000", "knowledge": "user" },
+      { "subject": "Javascript", "since": "01.01.2000", "knowledge": "beginner" },
+      { "subject": "MongoDB", "since": "01.01.2000", "knowledge": "expert" }
+    ]
+  }
+]
