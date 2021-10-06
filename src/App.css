@@ -1,0 +1,81 @@
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.border-bold {
+  border-top: 2px solid #000;
+}
+
+.border-solid {
+  border-top: 1px solid #000;
+}
+
+button {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.footer {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.right {
+  display: flex;
+  justify-content: space-between;
+}
+
+#beginner {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#user {
+  margin-right: 5px;
+  margin-left: 100px;
+}
+
+#expert {
+  margin-right: 5px;
+  margin-left: 100px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid rgb(80, 51, 51);
+  text-align: left;
+  padding: 8px;
+}
+
+thead:first-child {
+  background-color: #dddddd;
+}
+
+.candidate {
+  cursor: pointer;
+}
+
+.divider {
+  border-left: 1px solid #000;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-item {
+  margin-bottom: 20px;
+}
