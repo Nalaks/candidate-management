@@ -18,21 +18,6 @@ const App = () => {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [candidateModalIsOpen, setCandidateIsOpen] = useState(false);
   const [skillModalIsOpen, setSkillIsOpen] = useState(false);
-  // const [addCandidate, setAddCandidate] = useState({
-  //   id: uuidv4(),
-  //   firstName: '',
-  //   lastName: '',
-  //   dateOfBirth: '',
-  //   available: '',
-  //   email: '',
-  //   alreadyDev: false,
-  //   skills: []
-  // });
-  // const [addSkill, setAddSkill] = useState({
-  //   subject: '',
-  //   since: '',
-  //   knowledge: ''
-  // });
 
   // footer button handlers
   const resetTable = () => {

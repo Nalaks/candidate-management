@@ -59,7 +59,7 @@ const SkillModal = ({ open, handleClose, handleSubmitSkill }) => {
                 required: true
               })}
             />
-            {errors.dateOfBirth?.type === 'required' && <small>This field is required</small>}
+            {errors.since?.type === 'required' && <small>This field is required</small>}
           </div>
           <div className="input-item">
             <label>Knowledge: </label>
