@@ -17,8 +17,8 @@ const Skills = ({ data, showSkills, deleteSkill, handleOpen }) => {
         </thead>
         <tbody>
           {showSkills ? (
-            data.map((candidates) =>
-              candidates.skills.map((skill) => (
+            data?.map((candidates) =>
+              candidates?.skills?.map((skill) => (
                 <tr key={skill.subject}>
                   <td>{skill.subject}</td>
                   <td>{skill.since}</td>

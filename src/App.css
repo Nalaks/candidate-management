@@ -79,3 +79,7 @@ thead:first-child {
 .input-item {
   margin-bottom: 20px;
 }
+
+small {
+  color: red;
+}

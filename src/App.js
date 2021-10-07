@@ -18,21 +18,21 @@ const App = () => {
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   const [candidateModalIsOpen, setCandidateIsOpen] = useState(false);
   const [skillModalIsOpen, setSkillIsOpen] = useState(false);
-  const [addCandidate, setAddCandidate] = useState({
-    id: uuidv4(),
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    available: '',
-    email: '',
-    alreadyDev: false,
-    skills: []
-  });
-  const [addSkill, setAddSkill] = useState({
-    subject: '',
-    since: '',
-    knowledge: 'beginner'
-  });
+  // const [addCandidate, setAddCandidate] = useState({
+  //   id: uuidv4(),
+  //   firstName: '',
+  //   lastName: '',
+  //   dateOfBirth: '',
+  //   available: '',
+  //   email: '',
+  //   alreadyDev: false,
+  //   skills: []
+  // });
+  // const [addSkill, setAddSkill] = useState({
+  //   subject: '',
+  //   since: '',
+  //   knowledge: ''
+  // });
 
   // footer button handlers
   const resetTable = () => {
@@ -75,54 +75,21 @@ const App = () => {
   };
 
   // candidate modal handlers
-  const handleUserInput = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
-    setAddCandidate({ ...addCandidate, [name]: value });
-  };
-  const handleUserInputChecked = (e) => {
-    const { name } = e.target;
-    const value = String(e.target.checked);
-    setAddCandidate({ ...addCandidate, [name]: value });
-  };
-  const handleSubmitCandidate = (e) => {
-    e.preventDefault();
-    console.log(addCandidate);
-    setData([...data, addCandidate]);
-    setAddCandidate({
-      id: uuidv4(),
-      firstName: '',
-      lastName: '',
-      dateOfBirth: '',
-      available: '',
-      email: '',
-      alreadyDev: false,
-      skills: []
-    });
+  const handleSubmitCandidate = (formData) => {
+    const completeData = { id: uuidv4(), ...formData, skills: [] };
+    setData([...data, completeData]);
     setCandidateIsOpen(false);
   };
   const handleCandidateOpen = () => setCandidateIsOpen(true);
   const handleCandidateClose = () => setCandidateIsOpen(false);
 
   // skill modal handlers
-  const handleSkillInput = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
-    setAddSkill({ ...addSkill, [name]: value });
-  };
-  const handleSubmitSkill = (e) => {
-    e.preventDefault();
-    console.log(addSkill);
+  const handleSubmitSkill = (formData) => {
     console.log(skillData);
     if (skillData.length > 0) {
-      skillData[0].skills.push(addSkill);
+      skillData[0].skills.push(formData);
+      setSkillIsOpen(false);
     }
-    setAddSkill({
-      subject: '',
-      since: '',
-      knowledge: 'beginner'
-    });
-    setSkillIsOpen(false);
   };
   const handleSkillOpen = () => setSkillIsOpen(true);
   const handleSkillClose = () => setSkillIsOpen(false);
@@ -150,16 +117,11 @@ const App = () => {
       <CandidateModal
         handleClose={handleCandidateClose}
         open={candidateModalIsOpen}
-        addCandidate={addCandidate}
-        handleUserInput={handleUserInput}
-        handleUserInputChecked={handleUserInputChecked}
         handleSubmitCandidate={handleSubmitCandidate}
       />
       <SkillModal
         handleClose={handleSkillClose}
         open={skillModalIsOpen}
-        addSkill={addSkill}
-        handleSkillInput={handleSkillInput}
         handleSubmitSkill={handleSubmitSkill}
       />
       <Footer

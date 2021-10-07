@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
 
 const customStyles = {
   content: {
@@ -15,47 +16,72 @@ const customStyles = {
   }
 };
 
-const SkillModal = ({ open, handleClose, addSkill, handleSkillInput, handleSubmitSkill }) => (
-  <div>
-    <Modal
-      isOpen={open}
-      onRequestClose={handleClose}
-      style={customStyles}
-      contentLabel="Example Modal"
-      ariaHideApp={false}
-    >
-      <button type="button" onClick={handleClose}>
-        close
-      </button>
-      <h3>Add a new skill for the candidate</h3>
-      <form className="form">
-        <div className="input-item">
-          <label htmlFor="subject">Subject: </label>
-          <input type="text" name="subject" value={addSkill.subject} onChange={handleSkillInput} />
-        </div>
-        <div className="input-item">
-          <label htmlFor="since">Since: </label>
-          <input type="text" name="since" value={addSkill.since} onChange={handleSkillInput} />
-        </div>
-        <div className="input-item">
-          <label htmlFor="knowledge">Knowledge: </label>
-          <input
-            type="radio"
-            name="knowledge"
-            value="beginner"
-            onChange={handleSkillInput}
-            defaultChecked
-          />
-          Beginner
-          <input type="radio" name="knowledge" value="user" onChange={handleSkillInput} /> User
-          <input type="radio" name="knowledge" value="expert" onChange={handleSkillInput} /> Expert
-        </div>
-        <button type="submit" onClick={handleSubmitSkill}>
-          Submit a new skill
+const SkillModal = ({ open, handleClose, handleSubmitSkill }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    handleSubmitSkill(data);
+    reset({
+      subject: '',
+      since: '',
+      knowledge: ''
+    });
+  };
+  return (
+    <div>
+      <Modal
+        isOpen={open}
+        onRequestClose={handleClose}
+        style={customStyles}
+        contentLabel="Skill Modal"
+        ariaHideApp={false}
+      >
+        <button type="button" onClick={handleClose}>
+          close
         </button>
-      </form>
-    </Modal>
-  </div>
-);
-
+        <h3>Add a new skill for the candidate</h3>
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <div className="input-item">
+            <label>Subject: </label>
+            <input type="text" {...register('subject', { required: true, maxLength: 50 })} />
+            {errors.subject?.type === 'required' && <small>This field is required</small>}
+          </div>
+          <div className="input-item">
+            <label>Since: </label>
+            <input
+              type="date"
+              {...register('since', {
+                required: true
+              })}
+            />
+            {errors.dateOfBirth?.type === 'required' && <small>This field is required</small>}
+          </div>
+          <div className="input-item">
+            <label>Knowledge: </label>
+            <input
+              type="radio"
+              value="beginner"
+              {...register('knowledge', { required: true })}
+            />{' '}
+            Beginner
+            <input type="radio" value="user" {...register('knowledge', { required: true })} /> User
+            <input
+              type="radio"
+              value="expert"
+              {...register('knowledge', { required: true })}
+            />{' '}
+            Expert
+            {errors.knowledge?.type === 'required' && <small>This field is required</small>}
+          </div>
+          <input type="submit" />
+        </form>
+      </Modal>
+    </div>
+  );
+};
 export default SkillModal;

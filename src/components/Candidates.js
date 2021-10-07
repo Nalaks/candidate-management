@@ -8,7 +8,7 @@ const Candidates = ({ data, toggleSkills, deleteRow, handleOpen }) => {
     'Date of birth',
     'Available from',
     'Email',
-    'Alreaday worked as a developer'
+    'Already worked as a developer'
   ];
   return (
     <div>
@@ -39,7 +39,7 @@ const Candidates = ({ data, toggleSkills, deleteRow, handleOpen }) => {
                   type="checkbox"
                   name="dev"
                   id="dev"
-                  defaultChecked={candidates.alreadyDev === 'true' ? 'checked' : ''}
+                  defaultChecked={String(candidates.alreadyDev) === 'true' ? 'checked' : ''}
                 />
               </td>
             </tr>
